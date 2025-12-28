@@ -29,16 +29,19 @@ jobs:
     - name: Build (x64)
       run: dotnet publish Meziantou.FileMover/Meziantou.FileMover.csproj --configuration Release --runtime win-x64 --output ${{ github.workspace }}/publish/win-x64
 
+    - name: Create zip files
+      run: |
+        Compress-Archive -Path "${{ github.workspace }}/publish/win-x64/*" -DestinationPath "${{ github.workspace }}/publish/Meziantou.FileMover-win-x64.zip"
+        Compress-Archive -Path "${{ github.workspace }}/publish/win-arm64/*" -DestinationPath "${{ github.workspace }}/publish/Meziantou.FileMover-win-arm64.zip"
+
     - name: upload artifacts
       uses: actions/upload-artifact@v6
       with:
         name: publish
         path: ${{ github.workspace }}/publish
 
-    - run: (gh release view $env:ReleaseName || gh release create $env:ReleaseName --generate-notes) && gh release upload $env:ReleaseName "${{ github.workspace }}/publish/Meziantou.FileMover.exe" "${{ github.workspace }}/publish/Meziantou.FileMover.json" "${{ github.workspace }}/publish/Meziantou.FileMover.pdb"
+    - run: (gh release view $env:ReleaseName || gh release create $env:ReleaseName --generate-notes) && gh release upload $env:ReleaseName "${{ github.workspace }}/publish/Meziantou.FileMover-win-x64.zip" "${{ github.workspace }}/publish/Meziantou.FileMover-win-arm64.zip"
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
       env:
         GH_TOKEN: ${{ github.token }}
         ReleaseName: ${{ github.ref_name }}
-
-
