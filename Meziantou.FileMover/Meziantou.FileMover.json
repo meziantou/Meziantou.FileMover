@@ -1,0 +1,16 @@
+{
+  "Rules": [
+    {
+      "Action": "Move",
+      "Source": "%USERPROFILE%\\Downloads",
+      "Destination": "Z:\\zips",
+      "Pattern": "*.zip",
+      "Delay": "00:00:10"
+    },
+    {
+      "Action": "Delete",
+      "Source": "%USERPROFILE%\\Downloads",
+      "Pattern": "Sample"
+    }
+  ]
+}

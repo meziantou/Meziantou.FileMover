@@ -1,0 +1,19 @@
+﻿<Project Sdk="Meziantou.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType Condition="$(Configuration) == 'Release'">WinExe</OutputType>
+    <OutputType Condition="$(Configuration) == 'Debug'">Exe</OutputType>
+    <TargetFramework>net$(NETCoreAppMaximumVersion)-windows</TargetFramework>
+    
+    <PublishAot>true</PublishAot>
+    <StripSymbols>true</StripSymbols>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Meziantou.FileMover.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

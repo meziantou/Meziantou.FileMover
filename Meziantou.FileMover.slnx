@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Meziantou.FileMover.Tests/Meziantou.FileMover.Tests.csproj" />
+  <Project Path="Meziantou.FileMover/Meziantou.FileMover.csproj" />
+</Solution>

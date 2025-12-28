@@ -1,0 +1,18 @@
+﻿<Project Sdk="Meziantou.NET.Sdk.Test">
+
+  <PropertyGroup>
+    <TargetFramework>net$(NETCoreAppMaximumVersion)-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Framework.InlineSnapshotTesting" Version="3.3.33" />
+    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="1.0.30" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meziantou.FileMover\Meziantou.FileMover.csproj" />
+  </ItemGroup>
+
+</Project>
