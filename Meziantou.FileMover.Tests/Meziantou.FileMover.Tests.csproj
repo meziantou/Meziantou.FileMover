@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Framework.InlineSnapshotTesting" Version="3.3.35" />
-    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="1.0.30" />
+    <PackageReference Include="Meziantou.Framework.InlineSnapshotTesting" Version="3.3.36" />
+    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="1.0.31" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
