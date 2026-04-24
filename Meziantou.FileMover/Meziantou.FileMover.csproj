@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Meziantou.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType Condition="$(Configuration) == 'Release'">WinExe</OutputType>
-    <OutputType Condition="$(Configuration) == 'Debug'">Exe</OutputType>
-    <TargetFramework>net$(NETCoreAppMaximumVersion)-windows</TargetFramework>
-    
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net$(NETCoreAppMaximumVersion)</TargetFramework>
+
     <PublishAot>true</PublishAot>
     <StripSymbols>true</StripSymbols>
     <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType Condition="'$(Configuration)' == 'Release' and '$(RuntimeIdentifier)' == 'win-x64'">WinExe</OutputType>
+    <OutputType Condition="'$(Configuration)' == 'Release' and '$(RuntimeIdentifier)' == 'win-arm64'">WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

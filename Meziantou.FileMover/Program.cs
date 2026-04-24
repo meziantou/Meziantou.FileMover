@@ -4,14 +4,13 @@
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Win32;
 
 namespace Meziantou.FileMover;
 public static class Program
 {
     public static async Task Main(string[] args)
     {
-        RegisterAsStartup();
+        StartupRegistration.RegisterAsStartup();
 
         using var cts = new CancellationTokenSource();
         Console.CancelKeyPress += (sender, e) =>
@@ -21,15 +20,6 @@ public static class Program
         };
 
         await MainCore(args, cts.Token);
-
-        static void RegisterAsStartup()
-        {
-            if (Environment.ProcessPath is { } processPath)
-            {
-                using var key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", writable: true);
-                key.SetValue("Meziantou_FileMover", processPath);
-            }
-        }
     }
 
     public static async Task MainCore(string[] args, CancellationToken cancellationToken)

@@ -51,11 +51,38 @@ public class UnitTest1
         {
         }
 
-        var files = Directory.GetFiles(dir.FullPath, "*", SearchOption.AllDirectories).Select(FullPath.FromPath).Select(path => path.MakePathRelativeTo(dir.FullPath)).Order(StringComparer.Ordinal);
+        var files = Directory.GetFiles(dir.FullPath, "*", SearchOption.AllDirectories)
+            .Select(FullPath.FromPath)
+            .Select(path => path.MakePathRelativeTo(dir.FullPath).ToString().Replace('\\', '/'))
+            .Order(StringComparer.Ordinal);
         InlineSnapshot.Validate(files, """
             - config.json
-            - dst\test.test
+            - dst/test.test
             - other
+            """);
+    }
+
+    [Fact]
+    public void CreateMacOSLaunchAgentPlistContent_EscapesProgramPath()
+    {
+        var content = StartupRegistration.CreateMacOSLaunchAgentPlistContent("/Applications/FileMover & Co/FileMover");
+        InlineSnapshot.Validate(content.ReplaceLineEndings("\n"), """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+              <key>Label</key>
+              <string>com.meziantou.filemover</string>
+              <key>ProgramArguments</key>
+              <array>
+                <string>/Applications/FileMover &amp; Co/FileMover</string>
+              </array>
+              <key>RunAtLoad</key>
+              <true/>
+              <key>ProcessType</key>
+              <string>Background</string>
+            </dict>
+            </plist>
             """);
     }
 }
