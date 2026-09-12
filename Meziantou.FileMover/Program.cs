@@ -143,7 +143,9 @@ internal enum FileAction
     Delete,
 }
 
-[JsonSourceGenerationOptions(WriteIndented = true, UseStringEnumConverter = true)]
+// Rule and Configuration are positional records, so every parameter would become required. A configuration file may
+// legitimately omit Delay, and Destination for a Delete rule, so keep the existing lenient behavior.
+[JsonSourceGenerationOptions(WriteIndented = true, UseStringEnumConverter = true, RespectNullableAnnotations = false, RespectRequiredConstructorParameters = false)]
 [JsonSerializable(typeof(Configuration))]
 internal sealed partial class SourceGenerationContext : JsonSerializerContext
 {

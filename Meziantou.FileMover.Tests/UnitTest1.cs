@@ -31,17 +31,17 @@ public class UnitTest1
                 }
               ]
             }
-            """);
+            """, TestContext.Current.CancellationToken);
 
         using var cts = new CancellationTokenSource();
-        var task = Task.Run(() => Program.MainCore([path], cts.Token));
+        var task = Task.Run(() => Program.MainCore([path], cts.Token), TestContext.Current.CancellationToken);
 
         dir.CreateEmptyFile("a");
         dir.CreateEmptyFile("b");
         dir.CreateEmptyFile("other");
         dir.CreateEmptyFile("test.test");
 
-        await Task.Delay(3000);
+        await Task.Delay(3000, TestContext.Current.CancellationToken);
         await cts.CancelAsync();
         try
         {
