@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Framework.InlineSnapshotTesting" Version="6.0.14" />
-    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="3.0.9" />
+    <PackageReference Include="Meziantou.Framework.InlineSnapshotTesting" Version="6.0.15" />
+    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="3.0.10" />
   </ItemGroup>
 
   <ItemGroup>
